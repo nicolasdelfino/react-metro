@@ -1,0 +1,23 @@
+{
+  "name": "react-tweeny",
+  "description":
+    "A tiny configurable wrapper for animating dom elements as they mount or unmount",
+  "version": "0.0.142",
+  "dependencies": {
+    "gsap": "1.20.2",
+    "react": "15.5.3",
+    "react-addons-transition-group": "15.6.0",
+    "react-dom": "15.5.3",
+    "react-emoji-render": "^0.4.2",
+    "react-transition-group-plus": "0.5.0-alpha.1"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
