@@ -1,4 +1,4 @@
-# react-lipstick 💄
+# react-metro 🚇
 
 > A tiny configurable wrapper for animating dom elements as they mount or unmount
 
