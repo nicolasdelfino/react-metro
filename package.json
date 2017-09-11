@@ -1,5 +1,5 @@
 {
-  "name": "react-tweeny",
+  "name": "react-metro",
   "description":
     "A tiny configurable wrapper for animating dom elements as they mount or unmount",
   "version": "0.0.142",

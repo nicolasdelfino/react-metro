@@ -3,11 +3,7 @@ import { render } from "react-dom";
 import TransitionGroupPlus from "react-transition-group-plus";
 import DemoComponent from "./DemoComponent";
 import { Twemoji } from "react-emoji-render";
-import {
-  LipstickWrapper,
-  LipstickAnimation,
-  createLipstickSequence
-} from "./Lipstick";
+import { MetroWrapper, MetroAnimation, createMetroSequence } from "./Metro";
 
 class Page extends React.Component {
   constructor(props) {
@@ -100,17 +96,17 @@ class Page extends React.Component {
       }
     ];
 
-    // enhances an array of data to an array of LipstickComponents containing
+    // enhances an array of data to an array of MetroComponents containing
     // a presentational component and its data.
     // renderChildren: replaces the component (DemoComponent) with child data
-    // e.g: <LipstickAnimation> new content here </LipstickAnimation>
+    // e.g: <MetroAnimation> new content here </MetroAnimation>
     const renderChildren = false;
-    const sequence = createLipstickSequence(
+    const sequence = createMetroSequence(
       [
         { name: "monkey", emoji: "🐵" },
         { name: "dog", emoji: "🐶" },
         { name: "cow", emoji: "🐮" }
-      ].map(data => LipstickWrapper(data, DemoComponent)),
+      ].map(data => MetroWrapper(data, DemoComponent)),
       renderChildren,
       animationsMap
     );
@@ -131,7 +127,7 @@ class Page extends React.Component {
         unmountSequenceComplete: this.unmountSequenceComplete.bind(this)
       };
 
-      return <LipstickAnimation key={index} {...props} />;
+      return <MetroAnimation key={index} {...props} />;
     });
   }
 
@@ -147,7 +143,7 @@ class Page extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <Twemoji text={"React Lipstick 💄"} style={{ fontSize: 40 }} />
+        <Twemoji text={"React Metro 🚇"} style={{ fontSize: 40 }} />
         <h3>
           <p>{"Demo -> status = " + this.getText()}</p>
         </h3>
@@ -166,7 +162,7 @@ class Page extends React.Component {
         <hr />
         <p>
           <p className="cool">
-            React Lipstick is a tiny configurable wrapper for animating dom
+            React Metro is a tiny configurable wrapper for animating dom
             elements as they mount or unmount
           </p>
           * Optional hooks for binding methods to sequence end and start.<br />
@@ -175,14 +171,13 @@ class Page extends React.Component {
         </p>
 
         <p className="code">
-          import{" "}
-          {"{ LipstickWrapper, LipstickAnimation, createLipstickSequence }"}
-          <br /> from 'react-lipstick'
+          import {"{ MetroWrapper, MetroAnimation, createMetroSequence }"}
+          <br /> from 'react-Metro'
         </p>
         <h3>Basic usage, creating a sequence:</h3>
         <p className="code">
-          const sequence = createLipstickSequence(array)<br />.map(data =>
-          LipstickWrapper(data, component))
+          const sequence = createMetroSequence(array)<br />.map(data =>
+          MetroWrapper(data, component))
         </p>
         <p className="codeExplain">
           the array data {'["car","bike"]'} will get passed as props to your
@@ -194,7 +189,7 @@ class Page extends React.Component {
           <br />
           {"{ this.state.show && "} sequence.map((wrappedComponent, index) =>
           <br />
-          {"<"}LipstickAnimation key={"{i}"} props={"{...props}"} {"/> }"}
+          {"<"}MetroAnimation key={"{i}"} props={"{...props}"} {"/> }"}
           <br />
           {"</transitionGroupPlus>"}
         </p>

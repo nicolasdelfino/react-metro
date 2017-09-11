@@ -1,8 +1,8 @@
 import React from "react";
 import { TweenMax } from "gsap";
 
-export const LipstickHoc = Component => {
-  return class LipstickContainer extends React.Component {
+export const MetroHoc = Component => {
+  return class MetroContainer extends React.Component {
     // longest animation in sequence
     getLongestAnimationInSequence(io) {
       return Math.max.apply(

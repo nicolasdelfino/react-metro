@@ -1,5 +1,5 @@
 import React from "react";
-import { LipstickHoc } from "./LipstickHoc";
+import { MetroHoc } from "./MetroHoc";
 
 const defaultSettings = {
   renderChildren: false,
@@ -27,8 +27,8 @@ const defaultSettings = {
   }
 };
 
-// createLipstickSequence
-// enhances an array of data to an array of LipstickComponents containing
+// createMetroSequence
+// enhances an array of data to an array of MetroComponents containing
 // a presentational component and its data.
 // ____________________________________________________________________
 // index: index in array
@@ -36,7 +36,7 @@ const defaultSettings = {
 // props from wrapped component
 // clickHandler
 // sequenceEndCallback: executes when entire sequence finishes
-export const createLipstickSequence = (
+export const createMetroSequence = (
   componentsArray,
   renderChildren,
   animationsMap
@@ -58,18 +58,18 @@ export const createLipstickSequence = (
   return sequence;
 };
 
-// LipstickWrapper
+// MetroWrapper
 // generates a component with data
-export const LipstickWrapper = (data, Component) =>
-  class LipstickWrapper extends React.Component {
+export const MetroWrapper = (data, Component) =>
+  class MetroWrapper extends React.Component {
     render() {
       return <Component content={data} />;
     }
   };
 
-// LipstickAnimation
+// MetroAnimation
 // HOC, uses greensock TweenMax for animation
-export const LipstickAnimation = LipstickHoc(
+export const MetroAnimation = MetroHoc(
   class extends React.Component {
     render() {
       return (
