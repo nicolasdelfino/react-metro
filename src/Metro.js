@@ -27,21 +27,16 @@ const defaultSettings = {
   }
 };
 
-// createMetroSequence
-// enhances an array of data to an array of MetroComponents containing
-// a presentational component and its data.
+// metroSequence
+// enhances an array of data to a Metro sequence with animation data
 // ____________________________________________________________________
 // index: index in array
 // sequence: full animation (array)
 // props from wrapped component
 // clickHandler
 // sequenceEndCallback: executes when entire sequence finishes
-export const createMetroSequence = (
-  componentsArray,
-  renderChildren,
-  animationsMap
-) => {
-  const sequence = componentsArray.map((component, i) => {
+const metroSequence = (dataArray, animationsMap) => {
+  const sequence = dataArray.map((data, i) => {
     const settings = {
       ...defaultSettings,
       animation: { ...defaultSettings.animation, ...animationsMap[i] }
@@ -49,8 +44,7 @@ export const createMetroSequence = (
     return {
       props: {
         ...settings,
-        renderChildren,
-        content: component
+        content: data
       }
     };
   });
@@ -58,29 +52,21 @@ export const createMetroSequence = (
   return sequence;
 };
 
-// MetroWrapper
-// generates a component with data
-export const MetroWrapper = (data, Component) =>
-  class MetroWrapper extends React.Component {
-    render() {
-      return <Component content={data} />;
-    }
-  };
-
-// MetroAnimation
+// metroAnimation
 // HOC, uses greensock TweenMax for animation
-export const MetroAnimation = MetroHoc(
+const metroAnimation = MetroHoc(
   class extends React.Component {
     render() {
       return (
         <div onClick={() => this.props.clickHandler(this.props.index)}>
-          {this.props.renderChildren ? (
-            this.props.children
-          ) : (
-            <div>{<this.props.content />}</div>
-          )}
+          {this.props.children}
         </div>
       );
     }
   }
 );
+
+export const Metro = {
+  sequence: metroSequence,
+  animation: metroAnimation
+};

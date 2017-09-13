@@ -3,7 +3,43 @@ import { render } from "react-dom";
 import TransitionGroupPlus from "react-transition-group-plus";
 import DemoComponent from "./DemoComponent";
 import { Twemoji } from "react-emoji-render";
-import { MetroWrapper, MetroAnimation, createMetroSequence } from "./Metro";
+import { Metro } from "./Metro";
+
+// override default animations settings in a Tweeny sequence
+// see greensock tweenmax for reference
+// helper functions to create maps coming soon
+const animationsMap = [
+  {
+    in: {
+      time: 3,
+      delay: 0
+    },
+    out: {
+      time: 1.4,
+      delay: 1
+    },
+    willEnter: {
+      from: { opacity: 0, y: 120, x: 30 },
+      to: { opacity: 1, y: 0, x: 0, ease: "easeInOutElastic" }
+    }
+  },
+  {
+    in: {
+      time: 3,
+      delay: 0
+    }
+  },
+  {
+    out: {
+      time: 1.4,
+      delay: 0
+    },
+    willEnter: {
+      from: { opacity: 0, y: 120, x: -30 },
+      to: { opacity: 1, y: 0, x: 0, ease: "easeInOutElastic" }
+    }
+  }
+];
 
 class Page extends React.Component {
   constructor(props) {
@@ -55,81 +91,42 @@ class Page extends React.Component {
     );
   }
 
-  renderAnimatedComponents() {
+  //////////////////////////////////// METRO START ////////////////////////////////////
+
+  renderMetroComponents() {
     // toggle mount / unmount of components
     if (!this.state.show) {
       return;
     }
 
-    // override default animations settings in a Tweeny sequence
-    // see greensock tweenmax for reference
-    const animationsMap = [
-      {
-        in: {
-          time: 3,
-          delay: 0
-        },
-        out: {
-          time: 1.4,
-          delay: 1
-        },
-        willEnter: {
-          from: { opacity: 0, y: 120, x: 30 },
-          to: { opacity: 1, y: 0, x: 0, ease: "easeInOutElastic" }
-        }
-      },
-      {
-        in: {
-          time: 3,
-          delay: 0
-        }
-      },
-      {
-        out: {
-          time: 1.4,
-          delay: 0
-        },
-        willEnter: {
-          from: { opacity: 0, y: 120, x: -30 },
-          to: { opacity: 1, y: 0, x: 0, ease: "easeInOutElastic" }
-        }
-      }
+    const data = [
+      { name: "monkey", emoji: "🐵" },
+      { name: "dog", emoji: "🐶" },
+      { name: "cow", emoji: "🐮" }
     ];
 
-    // enhances an array of data to an array of MetroComponents containing
-    // a presentational component and its data.
-    // renderChildren: replaces the component (DemoComponent) with child data
-    // e.g: <MetroAnimation> new content here </MetroAnimation>
-    const renderChildren = false;
-    const sequence = createMetroSequence(
-      [
-        { name: "monkey", emoji: "🐵" },
-        { name: "dog", emoji: "🐶" },
-        { name: "cow", emoji: "🐮" }
-      ].map(data => MetroWrapper(data, DemoComponent)),
-      renderChildren,
-      animationsMap
-    );
+    const sequence = Metro.sequence(data, animationsMap);
 
-    return sequence.map((wrappedComponent, index) => {
-      // index: index in array
-      // sequence: full animation (array)
-      // props from wrapped component
-      // clickHandler
-      // sequenceEndCallback: executes when entire sequence finishes
-
+    return sequence.map((data, index) => {
       const props = {
         index,
-        sequence: sequence,
-        ...wrappedComponent.props,
+        sequence,
+        ...data.props,
+        wrapperType: "div",
         clickHandler: this.componentClickCallback.bind(this),
         mountSequenceComplete: this.mountSequenceComplete.bind(this),
         unmountSequenceComplete: this.unmountSequenceComplete.bind(this)
       };
 
-      return <MetroAnimation key={index} {...props} />;
+      return (
+        <Metro.animation key={index} {...props}>
+          <DemoComponent content={data.props.content} />
+        </Metro.animation>
+      );
     });
   }
+
+  //////////////////////////////////// METRO END ////////////////////////////////////
 
   getText() {
     if (this.state.unmountComplete === true) {
@@ -156,7 +153,7 @@ class Page extends React.Component {
         >
           {this.renderButtons()}
           <TransitionGroupPlus>
-            {this.renderAnimatedComponents()}
+            {this.renderMetroComponents()}
           </TransitionGroupPlus>
         </div>
         <hr />
@@ -170,28 +167,51 @@ class Page extends React.Component {
           by providing a custom animaionsMap<br />
         </p>
 
+        <p className="code">import {"{ Metro }"} from './Metro'</p>
+        <h3>Create a sequence:</h3>
         <p className="code">
-          import {"{ MetroWrapper, MetroAnimation, createMetroSequence }"}
-          <br /> from 'react-Metro'
+          const sequence = Metro.sequence(someArray, animationsMap)
         </p>
-        <h3>Basic usage, creating a sequence:</h3>
+        <h3>Map it</h3>
         <p className="code">
-          const sequence = createMetroSequence(array)<br />.map(data =>
-          MetroWrapper(data, component))
+          --> in method renderMetroComponents:
+          <br />
+          <br />
+          sequence.map((data, index) => {"{"}
+          <br />
+          <br />
+          {"/* Setup Metro props */"}
+          <br />
+          const props={"{"}
+          <br />
+          index<br />
+          sequence<br />
+          ...data.props<br />
+          wrapperType: 'div' {"<- div, ul whatever..."}
+          <br />
+          clickHandler: this.yourClickMethod.bind(this)<br />
+          mountSequenceComplete: this.yourMountComplete.bind(this) <br />
+          unmountSequenceComplete: this.yourUnmountComplete.bind(this)<br />
+          {"}"}
+          <br />
+          <br />
+          {"return ("}
+          <br />
+          {"<"}Metro.animation key={"{i}"} props={"{...props}"} {"/> }"}
+          <br />
+          {"-----> <"}YourComponent content={"{data.props.content}/>"}
+          <br />
+          {"<"}Metro.animation {"/>)})"}
+          <br />
         </p>
-        <p className="codeExplain">
-          the array data {'["car","bike"]'} will get passed as props to your
-          component
-        </p>
-        <h3>& rendering it:</h3>
+
+        <h3>& render it:</h3>
         <p className="code">
-          {"<transitionGroupPlus>"}
+          {'<TransitionGroupPlus> <- pass in component="li/div/ul..."'}
           <br />
-          {"{ this.state.show && "} sequence.map((wrappedComponent, index) =>
+          {"{ this.renderMetroComponents() } "}
           <br />
-          {"<"}MetroAnimation key={"{i}"} props={"{...props}"} {"/> }"}
-          <br />
-          {"</transitionGroupPlus>"}
+          {"</TransitionGroupPlus>"}
         </p>
       </div>
     );

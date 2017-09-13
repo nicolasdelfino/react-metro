@@ -44,6 +44,7 @@ export const MetroHoc = Component => {
         this.props.animation.willEnter.from,
         {
           ...this.props.animation.willEnter.to,
+          delay: this.props.animation.in.delay,
           onComplete: () => {
             if (
               this.isThisTheLongestAnimation(this.props.animation, "in") &&
@@ -97,7 +98,11 @@ export const MetroHoc = Component => {
     }
 
     render() {
-      return (
+      return this.props.wrapperType ? (
+        <this.props.wrapperType ref={c => (this.container = c)}>
+          <Component {...this.props} />
+        </this.props.wrapperType>
+      ) : (
         <div ref={c => (this.container = c)}>
           <Component {...this.props} />
         </div>
