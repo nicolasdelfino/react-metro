@@ -6,7 +6,7 @@ import nodeResolve from 'rollup-plugin-node-resolve'
 
 export default {
   entry: 'src/index.js',
-  format: 'umd',
+  format: 'iife',
   external: ['react'],
   exports: 'named',
   moduleName: 'reactMetro',
