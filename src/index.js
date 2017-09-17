@@ -1,3 +1,6 @@
+// REACT METRO - Nicolas Delfino
+// www.github.com/nicolasdelfino
+
 import React from 'react'
 import MetroHoc from './MetroHoc'
 
