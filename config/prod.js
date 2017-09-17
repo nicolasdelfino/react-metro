@@ -12,10 +12,6 @@ export default {
   moduleName: 'reactMetro',
   dest: 'dist/react-metro.js',
   plugins: [
-    autoExternal({
-      dependencies: true,
-      peerDependencies: true
-    }),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
@@ -32,6 +28,10 @@ export default {
       namedExports: {
         'node_modules/gsap/TweenMax.js': ['TweenMax']
       }
+    }),
+    autoExternal({
+      dependencies: true,
+      peerDependencies: true
     }),
     globals(),
     uglify()
