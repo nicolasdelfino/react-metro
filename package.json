@@ -1,6 +1,6 @@
 {
   "name": "react-metro",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "title": "react-metro",
   "description": "A tiny configurable wrapper for animating dom elements as they mount or unmount",
   "keywords": [
@@ -50,7 +50,7 @@
     "rollup-plugin-node-resolve": "3.0.0",
     "rollup-plugin-replace": "1.1.1",
     "rollup-plugin-uglify": "2.0.1",
-    "semantic-release": "^6.3.6",
+    "semantic-release": "^8.0.0",
     "standard": "10.0.3",
     "jest": "^19.0.2"
   },
