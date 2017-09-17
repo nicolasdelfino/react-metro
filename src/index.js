@@ -60,7 +60,7 @@ const metroSequence = (
 // HOC, uses greensock TweenMax for animation
 const metroAnimation = MetroHoc(
   () => ({ content, index, children, clickHandler }) => (
-    //eslint-disable-next-line
+    // eslint-disable-next-line
     <div role='presentation' onClick={() => clickHandler(content, index)}>{children}</div>
   )
 )

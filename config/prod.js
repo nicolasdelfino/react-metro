@@ -3,15 +3,16 @@ import cjs from 'rollup-plugin-commonjs'
 import uglify from 'rollup-plugin-uglify'
 import globals from 'rollup-plugin-node-globals'
 import nodeResolve from 'rollup-plugin-node-resolve'
+import autoExternal from 'rollup-plugin-auto-external';
 
 export default {
   entry: 'src/index.js',
   format: 'iife',
-  external: ['react'],
   exports: 'named',
   moduleName: 'reactMetro',
   dest: 'dist/react-metro.js',
   plugins: [
+    autoExternal(),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
