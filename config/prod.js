@@ -6,7 +6,7 @@ import nodeResolve from 'rollup-plugin-node-resolve'
 
 export default {
   entry: 'src/index.js',
-  format: 'cjs',
+  format: 'umd',
   external: ['react'],
   exports: 'named',
   moduleName: 'reactMetro',
@@ -19,10 +19,8 @@ export default {
       plugins: ['external-helpers']
     }),
     nodeResolve({
-      jsnext: true,
       module: true,
-      main: true,
-      browser: true
+      main: true
     }),
     cjs({
       exclude: ['node_modules/process-es6/**'],

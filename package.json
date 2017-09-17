@@ -4,6 +4,7 @@
   "title": "react-metro",
   "description": "A tiny configurable wrapper for animating dom elements as they mount or unmount",
   "main": "dist/react-metro.js",
+  "module": "dist/react-metro.js",
   "keywords": [
     "react",
     "animation",
@@ -56,22 +57,15 @@
     "rollup-plugin-replace": "1.1.1",
     "rollup-plugin-uglify": "2.0.1",
     "semantic-release": "^8.0.0",
-    "standard": "10.0.3",
     "jest": "^19.0.2"
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "rollup -c config/prod.js",
-    "dev": "rollup -c config/dev.js",
+    "build": "rimraf dist && rollup -c config/prod.js",
     "lint": "eslint src",
     "precommit": "npm test",
     "prepublish": "npm run clean && npm test && npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "npm run lint && jest"
-  },
-  "standard": {
-    "ignore": [
-      "build"
-    ]
   }
 }
