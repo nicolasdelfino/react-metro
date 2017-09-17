@@ -5,10 +5,11 @@ import globals from 'rollup-plugin-node-globals'
 import nodeResolve from 'rollup-plugin-node-resolve'
 
 export default {
-  moduleName: 'react-metro',
-  dest: 'dist/react-metro.min.js',
   entry: 'src/index.js',
   format: 'umd',
+  exports: 'named',
+  moduleName: 'reactMetro',
+  dest: 'dist/react-metro.min.js',
   plugins: [
     babel({
       babelrc: false,
