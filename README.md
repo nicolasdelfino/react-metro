@@ -8,3 +8,4 @@
 #### codesandbox demo
 https://codesandbox.io/s/w0orz7j5p8
 
+### Disclaimer: GSAP tools are subject to their own license (www.greensock.com)
