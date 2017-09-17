@@ -3,7 +3,7 @@
   "version": "0.0.0-development",
   "title": "react-metro",
   "description": "A tiny configurable wrapper for animating dom elements as they mount or unmount",
-  "main": "dist/react-metro.min.js",
+  "main": "dist/react-metro.js",
   "keywords": [
     "react",
     "animation",

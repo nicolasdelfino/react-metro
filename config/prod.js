@@ -9,7 +9,7 @@ export default {
   format: 'cjs',
   exports: 'named',
   moduleName: 'reactMetro',
-  dest: 'dist/react-metro.min.js',
+  dest: 'dist/react-metro.js',
   plugins: [
     babel({
       babelrc: false,
