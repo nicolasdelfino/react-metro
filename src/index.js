@@ -58,12 +58,21 @@ const metroSequence = (
 
 // metroAnimation
 // HOC, uses greensock TweenMax for animation
+/* eslint-disable */
 const metroAnimation = MetroHoc(
-  () => ({ content, index, children, clickHandler }) => (
-    // eslint-disable-next-line
-    <div role='presentation' onClick={() => clickHandler(content, index)}>{children}</div>
-  )
-)
+  class extends React.Component {
+    render() {
+      return (
+        <div
+          onClick={() =>
+            this.props.clickHandler(this.props.content, this.props.index)}
+        >
+          {this.props.children}
+        </div>
+      );
+    }
+  }
+);
 
 const Metro = {
   sequence: metroSequence,
