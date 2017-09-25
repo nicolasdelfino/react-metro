@@ -140,6 +140,7 @@ const domino = Metro.generateFocusMap(
   6, // columns
   this.state.data.length, // length of sequence
   this.state.preset // preset - dynamic in state or put directly as string 'dominoMulti' 
+  duration // optional (default 1 second)
 )
 this.setState({animationMap: domino}) // -> do unmount logic...
 ```
