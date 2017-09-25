@@ -1,12 +1,15 @@
-# react-metro 🚇
-
+<p align="center">
+<img src="http://nicolasdelfino.com/metro_web_text.png" alt="metro logo" />
+</p>
 > A tiny configurable wrapper for animating dom elements as they mount or unmount
 
 * Optional hooks for binding methods to sequence end and start.
 * Comes with a simple fade animation but everything can be overriden by providing a custom animationsMap
 
 #### Codesandbox demo
-https://codesandbox.io/s/w0orz7j5p8
+<a href="https://codesandbox.io/s/w0orz7j5p8" target="_blank">
+<img src="https://camo.githubusercontent.com/416c7a7433e9d81b4e430b561d92f22ac4f15988/68747470733a2f2f636f646573616e64626f782e696f2f7374617469632f696d672f706c61792d636f646573616e64626f782e737667" alt="edit metro on codesandbox" /></a>
+
 
 #### Usage
 Install
