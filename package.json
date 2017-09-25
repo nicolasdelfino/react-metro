@@ -49,6 +49,7 @@
     "eslint-plugin-prefer-object-spread": "^1.2.1",
     "eslint-plugin-react": "^7.3.0",
     "jest": "^19.0.2",
+    "jest-cli": "^21.1.0",
     "npm-run-all": "4.0.2",
     "rimraf": "^2.6.1",
     "rollup": "0.45.2",
