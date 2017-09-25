@@ -1,6 +1,7 @@
 <p align="center">
 <img src="http://nicolasdelfino.com/metro_web_text.png" alt="metro logo" />
 </p>
+
 > A tiny configurable wrapper for animating dom elements as they mount or unmount
 
 * Optional hooks for binding methods to sequence end and start.
