@@ -121,5 +121,15 @@ clickHandler // receives props (original array data) and index
 mountSequenceComplete
 unmountSequenceComplete
 ```
+#### Contribute
+
+##### PRs
+PRs are welcomed, to contribute make sure that:
+* Branch name references issue number if it adresses a feature / bug fix.
+* Branch has already been [synced with the upstream repo](https://help.github.com/articles/syncing-a-fork/) and any merge-conflicts have been resolved.
+* Install eslint and prettier to avoid lint issues while developing
+
+##### Issues
+Please be descriptive 
 
 #### Disclaimer: GSAP tools are subject to their own license (www.greensock.com)
