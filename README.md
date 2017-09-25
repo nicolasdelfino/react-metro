@@ -121,6 +121,29 @@ clickHandler // receives props (original array data) and index
 mountSequenceComplete
 unmountSequenceComplete
 ```
+#### Advanced usage
+The real power of Metro shines through it's use of dynamic animationMaps.
+
+<a href="https://codesandbox.io/s/w0orz7j5p8" target="_blank">The second demo</a> demonstrates the concept of dynamic sequences. This is achieved by altering the sequence´s animationMap on user interaction.
+
+We define an animatonMap to achieve the delayed entrance effect we want. Since the active animationMap is stored in our wrapper component´s local state we can replace our initial map on user interaction, thus making the animation interactive.
+
+Even though the developer has total control of an animation through the use of custom animationMaps, we created a helper method called Metro.generateFocusMap for cases where you want to accentuate a specific item within your sequence without having to write logic.
+
+These presets - today a total of 4: verticalDelayed, dominoForwards, dominoBackwards, dominoMulti, is something that you as a developer are more than welcome to contribute to. Ideas for upcoming presets are stuff like 'checkerBoard' / 'wave' / 'circular' etc...
+
+Each preset should try to incorporate the focus-first logic as they are intended to accentuate a clicked component.
+Current api for using the method is:
+```javascript
+const domino = Metro.generateFocusMap(
+  index, //focus - index of clicked component
+  6, // columns
+  this.state.data.length, // length of sequence
+  this.state.preset // preset - dynamic in state or put directly as string 'dominoMulti' 
+)
+this.setState({animationMap: domino}) // -> do unmount logic...
+```
+
 #### Contribute
 
 ##### PRs
