@@ -3,6 +3,7 @@
 
 import React from 'react'
 import MetroHoc from './MetroHoc'
+import MetroAnimations from './MetroAnimations'
 
 const defaultAnimation = {
   animation: {
@@ -69,14 +70,50 @@ const metroAnimation = MetroHoc(
         >
           {this.props.children}
         </div>
-      );
+      )
     }
   }
-);
+)
+
+// generateFocusAnimationMap
+// focusIndex - array based (starts at 0)
+// presets:
+// -> domino: dominoForwards, dominoBackwards, dominoMulti
+// -> delayedVertical
+const generateFocusAnimationMap = (
+  focusIndex = null,
+  cols,
+  totalItems,
+  animationType = 'dominoForwards',
+  duration = 1
+) => {
+  /* eslint-disable */
+  // columns / rows for more advanced types of presets
+  const rows = Math.ceil(totalItems / cols)
+  // default time and delay per item based on the total duration
+  const defaultItemTime = duration * 0.75 / totalItems
+  const delayTime = defaultItemTime + duration * 0.25 / totalItems
+
+  const presetSettings = [focusIndex, totalItems, defaultItemTime, delayTime]
+
+  // match animationType
+  if (animationType.includes('domino')) {
+    const type = animationType.split('domino')[1].toLowerCase()
+    return MetroAnimations.domino(type, ...presetSettings)
+  } else if (animationType.includes('delayed')) {
+    const type = animationType.split('delayed')[1].toLowerCase()
+    return MetroAnimations.delayedVertical(type, ...presetSettings)
+  } else {
+    // no map found
+    return []
+  }
+  /* eslint-enable */
+}
 
 const Metro = {
   sequence: metroSequence,
-  animation: metroAnimation
+  animation: metroAnimation,
+  generateFocusMap: generateFocusAnimationMap
 }
 
 export default Metro
