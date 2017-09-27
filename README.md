@@ -2,7 +2,7 @@
 <img src="http://nicolasdelfino.com/metro_web_text.png" alt="metro logo" />
 </p>
 
-[![Build Status](https://travis-ci.org/nicolasdelfino/react-metro.svg?branch=master)](https://travis-ci.org/nicolasdelfino/react-metro)
+[![Build Status](https://travis-ci.org/nicolasdelfino/react-metro.svg?branch=master)](https://travis-ci.org/nicolasdelfino/react-metro) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nicolasdelfino/react-metro/issues)
 
 > A tiny configurable wrapper for animating dom elements as they mount or unmount
 
