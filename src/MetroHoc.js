@@ -7,7 +7,7 @@ const MetroHoc = Component =>
     getLongestAnimationInSequence(io) {
       return Math.max(
         ...this.props.sequence.map(
-          obj => obj.props.animation[io].time + obj.props.animation[io].delay
+          obj => obj.animation[io].time + obj.animation[io].delay
         )
       )
     }
@@ -23,8 +23,8 @@ const MetroHoc = Component =>
       let isLastInSequence = true
       sequence.forEach((animationInSequence, i) => {
         const duration =
-          animationInSequence.props.animation[io].time +
-          animationInSequence.props.animation[io].delay
+          animationInSequence.animation[io].time +
+          animationInSequence.animation[io].delay
         if (duration === highestDuration) {
           if (i > animationIndex) {
             isLastInSequence = false
@@ -53,8 +53,7 @@ const MetroHoc = Component =>
                 'in'
               )
             ) {
-              this.props.mountSequenceComplete &&
-                this.props.mountSequenceComplete()
+              this.props.onMount && this.props.onMount()
             }
             callback()
           }
@@ -88,8 +87,7 @@ const MetroHoc = Component =>
                   'out'
                 )
               ) {
-                this.props.unmountSequenceComplete &&
-                  this.props.unmountSequenceComplete()
+                this.props.onUnmount && this.props.onUnmount()
               }
               callback()
             }, leftOver * 1000)

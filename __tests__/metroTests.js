@@ -6,7 +6,7 @@ describe('sequence api', () => {
 
   it('transforms an array to a Metro sequence', () => {
     const sequence = Metro.sequence(testArr, [])
-    expect(sequence[0].props.content.name).toBe(testArr[0].name)
+    expect(sequence[0].content.name).toBe(testArr[0].name)
   })
 
   it('uses the default animation settings', () => {
@@ -35,7 +35,7 @@ describe('sequence api', () => {
       }
     }
 
-    expect(sequence[0].props.animation).toEqual(defaultAnimation)
+    expect(sequence[0].animation).toEqual(defaultAnimation)
   })
 
   it('accepts and overrides default animation settings', () => {
@@ -66,7 +66,7 @@ describe('sequence api', () => {
     }
 
     const sequence = Metro.sequence(testArr, [], defaultAnimationOverride)
-    expect(sequence[0].props.animation).toEqual(defaultAnimationOverrideBase)
+    expect(sequence[0].animation).toEqual(defaultAnimationOverrideBase)
   })
 
   it('overrides default animation per array item though a custom animationmMap', () => {
@@ -107,11 +107,11 @@ describe('sequence api', () => {
     const sequence = Metro.sequence(testArr, animationMap)
 
     // dog map
-    expect(sequence[0].props.animation.in).toEqual(dogMap.in)
-    expect(sequence[0].props.animation.out).toEqual(dogMap.out)
-    expect(sequence[0].props.animation.willEnter).toEqual(dogMap.willEnter)
+    expect(sequence[0].animation.in).toEqual(dogMap.in)
+    expect(sequence[0].animation.out).toEqual(dogMap.out)
+    expect(sequence[0].animation.willEnter).toEqual(dogMap.willEnter)
     // cat map
-    expect(sequence[1].props.animation.out).toEqual(catMap.out)
-    expect(sequence[1].props.animation.willEnter).toEqual(catMap.willEnter)
+    expect(sequence[1].animation.out).toEqual(catMap.out)
+    expect(sequence[1].animation.willEnter).toEqual(catMap.willEnter)
   })
 })

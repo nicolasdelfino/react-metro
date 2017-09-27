@@ -34,7 +34,7 @@ const defaultAnimation = {
 // enhances an array of data to a Metro sequence with animation data
 const metroSequence = (
   dataArray,
-  animationMap,
+  animationMap = [],
   defaultAnimationOverride = null
 ) => {
   const baseAnimation = defaultAnimationOverride || defaultAnimation
@@ -44,14 +44,14 @@ const metroSequence = (
       animation: { ...baseAnimation.animation, ...animationMap[i] }
     }
     return {
-      props: {
-        ...settings,
-        content: data
-      }
+      ...settings,
+      content: data
     }
   })
 
-  return sequence.map(data => ({
+  return sequence.map((data, index) => ({
+    key: index,
+    itemIndex: index,
     ...data,
     sequence
   }))
@@ -65,8 +65,10 @@ const metroAnimation = MetroHoc(
     render() {
       return (
         <div
-          onClick={() =>
-            this.props.clickHandler(this.props.content, this.props.index)}
+          onClick={() => {
+            this.props.onClick &&
+              this.props.onClick(this.props.content, this.props.itemIndex)
+          }}
         >
           {this.props.children}
         </div>

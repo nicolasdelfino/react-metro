@@ -4,7 +4,7 @@
 
 > A tiny configurable wrapper for animating dom elements as they mount or unmount
 
-* Optional hooks for binding methods to sequence end and start.
+* Optional hooks for binding to mount / unmount sequence complete.
 * Comes with a simple fade animation but everything can be overriden by providing a custom animationsMap
 
 #### Codesandbox demo
@@ -33,27 +33,26 @@ if(!this.state.showMetroComponents)
 
 const data = ['cat', 'dog']
 
-return Metro.sequence(someArray, animationsMap).map((data, index) => {
-
-/* Setup Metro props */
-const props = {
-  index,
-  sequence: data.sequence,
-  ...data.props,
-  wrapperType: 'div', // div, ul whatever...
-  clickHandler: this.yourClickMethod.bind(this),
-  mountSequenceComplete: this.yourMountComplete.bind(this), 
-  unmountSequenceComplete: this.yourUnmountComplete.bind(this)
-}
-
-return (
-<Metro.animation key={i} props={...props} /> }
-  <YourComponent content={data.props.content}/>
-<Metro.animation />)})
+return Metro.sequence(
+data,
+animationsMap, // optional 
+defaultAnimation // optional
+).map(data => {
+  return (
+    <Metro.animation
+      {...data}
+      wrapperType='div', // optional ul or whatever, defaults to div
+      onClick={this.onClick.bind(this)} // optional
+      onMount={this.onMountComplete.bind(this)} // optional
+      onUnmount={this.onUnmountComplete.bind(this)}> // optional
+      <YourComponent {...data.content} />
+    </Metro.animation>
+  )
+})
 ```
 & render it:
 ```javascript
-<TransitionGroupPlus> <- pass in component="li/div/ul..."
+<TransitionGroupPlus> // optional arg type="li/div/ul..."
 { this.renderMetroComponents() } 
 </TransitionGroupPlus>
 ```
@@ -61,7 +60,6 @@ return (
 ```javascript
 // override Metro´s default animations settings for each unique item in your items
 // array, see greensock tweenmax for reference.
-// helper functions to create animation maps coming soon
 const animationMap = [
   {
     in: {
@@ -115,11 +113,12 @@ const defaultAnimationOverride = {
   }
 };
 ```
-#### Callbacks
+#### Methods
 ```javascript
-clickHandler // receives props (original array data) and index
-mountSequenceComplete
-unmountSequenceComplete
+wrapperType // dom element, defaults to div
+onClick // receives props (original array data) and array index
+onMount // fires when the mount sequence completes
+onUnmount // fires when the unmount sequence completes
 ```
 #### Advanced usage
 The real power of Metro shines through it's use of dynamic animationMaps.
