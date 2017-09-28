@@ -13,6 +13,9 @@
 <a href="https://codesandbox.io/s/w0orz7j5p8" target="_blank">
 <img src="https://camo.githubusercontent.com/416c7a7433e9d81b4e430b561d92f22ac4f15988/68747470733a2f2f636f646573616e64626f782e696f2f7374617469632f696d672f706c61792d636f646573616e64626f782e737667" alt="edit metro on codesandbox" /></a>
 
+#### Medium
+<a href="https://medium.com/@nicolasdelfino/introducing-react-metro-f766068212d5" target="_blank">Introducing React Metro</a>
+
 ### Important notes:
 27/09: 1.4.0 introduces BREAKING CHANGES, improvements to the api, see docs below
 
