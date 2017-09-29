@@ -48,8 +48,9 @@ defaultAnimation // optional
   return (
     <Metro.animation
       {...data}
-      wrapperType='div', // optional ul or whatever, defaults to div
+      wrapperType='div' // optional ul or whatever, defaults to div
       onClick={this.onClick.bind(this)} // optional
+      enableClickDuringAnimation //optional, boolean (default false)
       onMount={this.onMountComplete.bind(this)} // optional
       onUnmount={this.onUnmountComplete.bind(this)}> // optional
       <YourComponent {...data.content} />
@@ -123,7 +124,7 @@ const defaultAnimationOverride = {
 #### Methods
 ```javascript
 wrapperType // dom element, defaults to div
-onClick // receives props (original array data) and array index
+onClick // receives props (original array data), array index and animating
 onMount // fires when the mount sequence completes
 onUnmount // fires when the unmount sequence completes
 ```
