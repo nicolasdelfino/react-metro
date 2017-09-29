@@ -66,8 +66,16 @@ const metroAnimation = MetroHoc(
       return (
         <div
           onClick={() => {
-            this.props.onClick &&
-              this.props.onClick(this.props.content, this.props.itemIndex)
+            if (
+              this.props.onClick &&
+              (!this.props.animating || this.props.enableClickDuringAnimation)
+            ) {
+              this.props.onClick(
+                this.props.content,
+                this.props.itemIndex,
+                this.props.animating
+              )
+            }
           }}
         >
           {this.props.children}
