@@ -160,8 +160,8 @@ PRs are welcomed, to contribute make sure that:
 * Branch has already been [synced with the upstream repo](https://help.github.com/articles/syncing-a-fork/) and any merge-conflicts have been resolved.
 * Install eslint and prettier to avoid lint issues while developing
 
-##### Contributor list
-emilpalsson
+##### Contributors
+<img src="https://avatars3.githubusercontent.com/u/26581738?v=4&s=400" width="70px;"/><br /><sub>Emil Pålsson</sub>
 
 ##### Issues
 Please be descriptive 
