@@ -161,7 +161,7 @@ PRs are welcomed, to contribute make sure that:
 * Install eslint and prettier to avoid lint issues while developing
 
 ##### Contributors
-<img src="https://avatars3.githubusercontent.com/u/26581738?v=4&s=400" width="70px;"/><br /><sub>Emil Pålsson</sub>
+<img src="https://avatars3.githubusercontent.com/u/26581738?v=4&s=400" width="70px;"/><br /><a href="https://github.com/emilpalsson"><sub>Emil Pålsson</sub></a>
 
 ##### Issues
 Please be descriptive 
