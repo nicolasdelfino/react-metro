@@ -3,13 +3,6 @@ import { TweenMax } from 'gsap'
 
 const MetroHoc = Component =>
   class MetroContainer extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        animating: false
-      }
-    }
-
     // longest animation in sequence
     getLongestAnimationInSequence(io) {
       return Math.max(
@@ -45,7 +38,7 @@ const MetroHoc = Component =>
     componentWillEnter(callback) {
       const el = this.container
 
-      this.setState({ animating: true })
+      this.props.sequence[this.props.itemIndex].animating = true
       TweenMax.fromTo(
         el,
         this.props.animation.in.time,
@@ -62,9 +55,9 @@ const MetroHoc = Component =>
                 'in'
               )
             ) {
-              this.setState({ animating: false })
               this.props.onMount && this.props.onMount()
             }
+            this.props.sequence[this.props.itemIndex].animating = false
             callback()
           }
         }
@@ -80,7 +73,7 @@ const MetroHoc = Component =>
         fullSequenceDuration -
         (this.props.animation.out.time + this.props.animation.out.delay)
 
-      this.setState({ animating: true })
+      this.props.sequence[this.props.itemIndex].animating = true
       TweenMax.fromTo(
         el,
         this.props.animation.out.time,
@@ -98,9 +91,9 @@ const MetroHoc = Component =>
                   'out'
                 )
               ) {
-                this.setState({ animating: false })
                 this.props.onUnmount && this.props.onUnmount()
               }
+              this.props.sequence[this.props.itemIndex].animating = false
               callback()
             }, leftOver * 1000)
           }
@@ -116,7 +109,7 @@ const MetroHoc = Component =>
         </this.props.wrapperType>
       ) : (
         <div ref={c => (this.container = c)}>
-          <Component {...this.props} animating={this.state.animating} />
+          <Component {...this.props} />
         </div>
       )
     }

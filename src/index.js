@@ -66,14 +66,15 @@ const metroAnimation = MetroHoc(
       return (
         <div
           onClick={() => {
+            const animating = this.props.sequence.some(s => s.animating)
             if (
               this.props.onClick &&
-              (!this.props.animating || this.props.enableClickDuringAnimation)
+              (!animating || this.props.enableClickDuringAnimation)
             ) {
               this.props.onClick(
                 this.props.content,
                 this.props.itemIndex,
-                this.props.animating
+                animating
               )
             }
           }}
