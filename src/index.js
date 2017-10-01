@@ -30,6 +30,32 @@ const defaultAnimation = {
   }
 }
 
+// metroContainer
+// single node enhancer
+const metroContainer = (
+  component,
+  defaultAnimationOverride = null,
+  props = {}
+) => {
+  const baseAnimation = defaultAnimationOverride || defaultAnimation
+  const animation = {
+    ...baseAnimation
+  }
+
+  const containerData = {
+    ...animation,
+    key: 0,
+    itemIndex: 0,
+    sequence: [{ ...animation }]
+  }
+
+  return (
+    <Metro.animation {...containerData} {...props}>
+      {component}
+    </Metro.animation>
+  )
+}
+
 // metroSequence
 // enhances an array of data to a Metro sequence with animation data
 const metroSequence = (
@@ -124,6 +150,7 @@ const generateFocusAnimationMap = (
 const Metro = {
   sequence: metroSequence,
   animation: metroAnimation,
+  container: metroContainer,
   generateFocusMap: generateFocusAnimationMap
 }
 

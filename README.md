@@ -28,6 +28,8 @@ Import
 ```javascript
 import Metro from 'react-metro'
 ```
+#### Metro.sequence - animate multiple objects:
+
 Create a sequence, map it:
 ```javascript
 // in method renderMetroComponents:
@@ -64,6 +66,28 @@ defaultAnimation // optional
 { this.renderMetroComponents() } 
 </TransitionGroupPlus>
 ```
+#### Metro.container - single node enhancer:
+```javascript
+renderMetroContainer() {
+  if (!this.state.showContainer) {
+    return null;
+  }
+
+  const props = {
+    wrapperType: "div",
+    enableClickDuringAnimation: true,
+    onMount: this.wrapMount.bind(this),
+    onUnmount: this.wrapUnmount.bind(this)
+  };
+
+  return Metro.container(
+    <div>...</div>, // base node: pass in text, wrap components 
+    containerAnimation, // optional
+    props //optional
+  );
+}
+```
+
 #### Customizing animations
 ```javascript
 // override Metro´s default animations settings for each unique item in your items
@@ -125,6 +149,7 @@ const defaultAnimationOverride = {
 ```javascript
 wrapperType // dom element, defaults to div
 onClick // receives props (original array data), array index and animating
+enableClickDuringAnimation // boolean, defaults to false
 onMount // fires when the mount sequence completes
 onUnmount // fires when the unmount sequence completes
 ```
@@ -159,6 +184,7 @@ PRs are welcomed, to contribute make sure that:
 * Branch name references issue number if it adresses a feature / bug fix.
 * Branch has already been [synced with the upstream repo](https://help.github.com/articles/syncing-a-fork/) and any merge-conflicts have been resolved.
 * Install eslint and prettier to avoid lint issues while developing
+* Use <a href="https://github.com/semantic-release/semantic-release">semantic release guidelines</a> when commiting
 
 ##### Contributors
 <img src="https://avatars3.githubusercontent.com/u/26581738?v=4&s=400" width="70px;"/><br /><a href="https://github.com/emilpalsson"><sub>Emil Pålsson</sub></a>
