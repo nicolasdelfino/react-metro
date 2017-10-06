@@ -56,6 +56,31 @@ const metroContainer = (
   )
 }
 
+const combineAnimations = (base, animation) => ({
+  out: { ...base.out, ...animation.out },
+  in: { ...base.in, ...animation.in },
+  willEnter: {
+    from: {
+      ...(base.willEnter && base.willEnter.from),
+      ...(animation.willEnter && animation.willEnter.from)
+    },
+    to: {
+      ...(base.willEnter && base.willEnter.to),
+      ...(animation.willEnter && animation.willEnter.to)
+    }
+  },
+  willLeave: {
+    from: {
+      ...(base.willLeave && base.willLeave.from),
+      ...(animation.willLeave && animation.willLeave.from)
+    },
+    to: {
+      ...(base.willLeave && base.willLeave.to),
+      ...(animation.willLeave && animation.willLeave.to)
+    }
+  }
+})
+
 // metroSequence
 // enhances an array of data to a Metro sequence with animation data
 const metroSequence = (
@@ -63,11 +88,17 @@ const metroSequence = (
   animationMap = [],
   defaultAnimationOverride = null
 ) => {
-  const baseAnimation = defaultAnimationOverride || defaultAnimation
+  const baseAnimation = {
+    animation: combineAnimations(
+      defaultAnimation.animation,
+      defaultAnimationOverride.animation
+    )
+  }
   const sequence = dataArray.map((data, i) => {
+    const combAnim = combineAnimations(baseAnimation.animation, animationMap[i])
     const settings = {
       ...baseAnimation,
-      animation: { ...baseAnimation.animation, ...animationMap[i] }
+      animation: combAnim
     }
     return {
       ...settings,
