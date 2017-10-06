@@ -88,7 +88,12 @@ const metroSequence = (
   animationMap = [],
   defaultAnimationOverride = null
 ) => {
-  const baseAnimation = defaultAnimationOverride || defaultAnimation
+  const baseAnimation = {
+    animation: combineAnimations(
+      defaultAnimation.animation,
+      defaultAnimationOverride.animation
+    )
+  }
   const sequence = dataArray.map((data, i) => {
     const combAnim = combineAnimations(baseAnimation.animation, animationMap[i])
     const settings = {

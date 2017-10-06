@@ -123,6 +123,8 @@ const animationMap = [
 
 // Metro comes with a simple, fade in / out default. This object passed
 // in as the third argument in the Metro.sequence overrides the default settings.
+// The override settings are combined with the built in defaults, so you only
+// have to specify the values you want to change.
 const defaultAnimationOverride = {
   animation: {
     out: {
