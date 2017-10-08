@@ -90,8 +90,10 @@ renderMetroContainer() {
 
 #### Customizing animations
 ```javascript
-// override Metro´s default animations settings for each unique item in your items
+// Override Metro´s default animations settings for each unique item in your items
 // array, see greensock tweenmax for reference.
+// The animation settings are combined with the default animation settings, so
+// you only have to specify the values you want to change.
 const animationMap = [
   {
     in: {
@@ -121,6 +123,8 @@ const animationMap = [
 
 // Metro comes with a simple, fade in / out default. This object passed
 // in as the third argument in the Metro.sequence overrides the default settings.
+// The override settings are combined with the built in defaults, so you only
+// have to specify the values you want to change.
 const defaultAnimationOverride = {
   animation: {
     out: {

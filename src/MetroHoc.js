@@ -3,6 +3,10 @@ import { TweenMax } from 'gsap'
 
 const MetroHoc = Component =>
   class MetroContainer extends React.Component {
+    static defaultProps = {
+      wrapperType: 'div'
+    }
+
     // longest animation in sequence
     getLongestAnimationInSequence(io) {
       return Math.max(
@@ -103,14 +107,10 @@ const MetroHoc = Component =>
 
     /* eslint-disable */
     render() {
-      return this.props.wrapperType ? (
+      return (
         <this.props.wrapperType ref={c => (this.container = c)}>
           <Component {...this.props} />
         </this.props.wrapperType>
-      ) : (
-        <div ref={c => (this.container = c)}>
-          <Component {...this.props} />
-        </div>
       )
     }
   }
