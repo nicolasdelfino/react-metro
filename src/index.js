@@ -56,6 +56,11 @@ const metroContainer = (
   )
 }
 
+// metroBindContainer
+// binds a conditional statement to a Metro.container
+const metroBindContainer = (conditional, component, anim, props = {}) =>
+  conditional ? Metro.container(component, anim, props) : null
+
 const combineAnimations = (base, animation) => {
   if (!animation) {
     return base
@@ -189,6 +194,7 @@ const Metro = {
   sequence: metroSequence,
   animation: metroAnimation,
   container: metroContainer,
+  bindContainer: metroBindContainer,
   generateFocusMap: generateFocusAnimationMap
 }
 
