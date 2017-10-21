@@ -88,6 +88,17 @@ renderMetroContainer() {
 }
 ```
 
+#### Metro.bindContainer:
+```javascript
+// A wrapper for Metro.container that removes the need for having a conditional toggle in parent.
+// Arguments: 
+// conditional property for toggling (bool), component (dom element), animation (object - optional), props (object optional)
+
+renderLessVerboseContainer() {
+  return Metro.bindContainer(bool, component, animation, props)
+}
+```
+
 #### Customizing animations
 ```javascript
 // Override Metro´s default animations settings for each unique item in your items
