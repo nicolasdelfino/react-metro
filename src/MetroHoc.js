@@ -1,5 +1,9 @@
+/*
+* React Metro - MetroHOC
+* Enhances a wrapped component 
+*/
 import React from 'react'
-import { TweenMax } from 'gsap'
+import MetroTween from './MetroTween'
 
 const MetroHoc = Component =>
   class MetroContainer extends React.Component {
@@ -43,32 +47,30 @@ const MetroHoc = Component =>
       const el = this.container
 
       this.props.sequence[this.props.itemIndex].animating = true
-      TweenMax.fromTo(
+      MetroTween.fromTo(
         el,
         this.props.animation.in.time,
         this.props.animation.willEnter.from,
         {
           ...this.props.animation.willEnter.to,
-          delay: this.props.animation.in.delay,
-          onComplete: () => {
-            if (
-              this.isThisTheLongestAnimation(this.props.animation, 'in') &&
-              this.applySequenceEndIfLastInSequence(
-                this.props.index,
-                this.props.sequence,
-                'in'
-              )
-            ) {
-              this.props.onMount && this.props.onMount()
-            }
-            this.props.sequence[this.props.itemIndex].animating = false
-            callback()
-          }
+          delay: this.props.animation.in.delay
         }
-      )
+      ).then(() => {
+        if (
+          this.isThisTheLongestAnimation(this.props.animation, 'in') &&
+          this.applySequenceEndIfLastInSequence(
+            this.props.index,
+            this.props.sequence,
+            'in'
+          )
+        ) {
+          this.props.onMount && this.props.onMount()
+        }
+        this.props.sequence[this.props.itemIndex].animating = false
+        callback()
+      })
     }
 
-    // on will leave
     componentWillLeave(callback) {
       const el = this.container
       const fullSequenceDuration = this.getLongestAnimationInSequence('out')
@@ -78,31 +80,30 @@ const MetroHoc = Component =>
         (this.props.animation.out.time + this.props.animation.out.delay)
 
       this.props.sequence[this.props.itemIndex].animating = true
-      TweenMax.fromTo(
+      MetroTween.fromTo(
         el,
         this.props.animation.out.time,
         this.props.animation.willLeave.from,
         {
           ...this.props.animation.willLeave.to,
-          delay: this.props.animation.out.delay,
-          onComplete: () => {
-            setTimeout(() => {
-              if (
-                this.isThisTheLongestAnimation(this.props.animation, 'out') &&
-                this.applySequenceEndIfLastInSequence(
-                  this.props.index,
-                  this.props.sequence,
-                  'out'
-                )
-              ) {
-                this.props.onUnmount && this.props.onUnmount()
-              }
-              this.props.sequence[this.props.itemIndex].animating = false
-              callback()
-            }, leftOver * 1000)
-          }
+          delay: this.props.animation.out.delay
         }
-      )
+      ).then(() => {
+        setTimeout(() => {
+          if (
+            this.isThisTheLongestAnimation(this.props.animation, 'out') &&
+            this.applySequenceEndIfLastInSequence(
+              this.props.index,
+              this.props.sequence,
+              'out'
+            )
+          ) {
+            this.props.onUnmount && this.props.onUnmount()
+          }
+          this.props.sequence[this.props.itemIndex].animating = false
+          callback()
+        }, leftOver * 1000)
+      })
     }
 
     /* eslint-disable */

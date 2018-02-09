@@ -1,6 +1,7 @@
-// REACT METRO - Nicolas Delfino
-// www.github.com/nicolasdelfino
-
+/*
+* React Metro 
+* www.github.com/nicolasdelfino
+*/
 import React from 'react'
 import MetroHoc from './MetroHoc'
 import MetroAnimations from './MetroAnimations'
@@ -30,8 +31,10 @@ const defaultAnimation = {
   }
 }
 
-// metroContainer
-// single node enhancer
+/*
+* metroContainer
+* Single node enhancer
+*/
 const metroContainer = (
   component,
   defaultAnimationOverride = null,
@@ -56,8 +59,10 @@ const metroContainer = (
   )
 }
 
-// metroBindContainer
-// binds a conditional statement to a Metro.container
+/*
+* metroBindContainer
+* Binds a conditional statement to a Metro.container
+*/
 const metroBindContainer = (conditional, component, anim, props = {}) =>
   conditional ? Metro.container(component, anim, props) : null
 
@@ -91,8 +96,10 @@ const combineAnimations = (base, animation) => {
   }
 }
 
-// metroSequence
-// enhances an array of data to a Metro sequence with animation data
+/*
+* metroSequence
+* Enhances an array of data to a Metro sequence with animation data
+*/
 const metroSequence = (
   dataArray,
   animationMap = [],
@@ -126,10 +133,12 @@ const metroSequence = (
   }))
 }
 
-// metroAnimation
-// HOC, uses greensock TweenMax for animation
-/* eslint-disable */
+/*
+* metroAnimation
+* HOC, uses MetroTween for animating components on enter / leave
+*/
 const metroAnimation = MetroHoc(
+  /* eslint-disable */
   class extends React.Component {
     render() {
       return (
