@@ -18,9 +18,9 @@
 
 <a href="https://medium.com/@nicolasdelfino/introducing-react-metro-f766068212d5" target="_blank">Introducing React Metro</a>
 
-### Important notes:
+### Important note:
 
-27/09: 1.4.0 introduces BREAKING CHANGES, improvements to the api, see docs below
+1.9.1 uses custom tweener MetroTween.js, list of supported easing equations in docs.
 
 #### Usage
 
@@ -121,7 +121,7 @@ renderLessVerboseContainer() {
 
 ```javascript
 // Override Metro´s default animations settings for each unique item in your items
-// array, see greensock tweenmax for reference.
+// array, see MetroTween args further down.
 // The animation settings are combined with the default animation settings, so
 // you only have to specify the values you want to change.
 const animationMap = [
@@ -178,6 +178,53 @@ const defaultAnimationOverride = {
     }
   }
 };
+```
+
+#### MetroTween
+
+MetroTween is Metro's new tween engine that replaces GSAP TweenMax.
+It's 100% backward compatible with everything used in the codesandbox demo.
+
+#### Supported tween equations:
+
+```javascript
+easeInSine;
+easeOutSine;
+easeInOutSine;
+easeInQuad;
+easeOutQuad;
+easeInOutQuad;
+easeInCubic;
+easeOutCubic;
+easeInOutCubic;
+easeInQuart;
+easeOutQuart;
+easeInOutQuart;
+easeInQuint;
+easeOutQuint;
+easeInOutQuint;
+easeInExpo;
+easeOutExpo;
+easeInOutExpo;
+easeInCirc;
+easeOutCirc;
+easeInOutCirc;
+easeInBack;
+easeOutBack;
+easeInOutBack;
+```
+
+#### Tweenable properties
+
+```javascript
+x;
+y;
+skewX;
+skewY;
+scaleX;
+scaleY;
+rotation;
+scale;
 ```
 
 #### Methods
