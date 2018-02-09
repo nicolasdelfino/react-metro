@@ -1,6 +1,11 @@
-// ///////////////////////////////////////////////////////////////////////////////
-// Metro.delayedVertical
-// ///////////////////////////////////////////////////////////////////////////////
+/*
+* React Metro - MetroAnimations
+* Preconfigured animations 
+*/
+
+/*
+* Metro.delayedVertical
+*/
 const delayedVerticalPreset = (
   type,
   focusIndex,
@@ -70,9 +75,9 @@ const delayedVerticalPreset = (
   return map
 }
 
-// ///////////////////////////////////////////////////////////////////////////////
-// Metro.domino, requires a focusIndex
-// ///////////////////////////////////////////////////////////////////////////////
+/*
+* Metro.domino, requires a focusIndex
+*/
 const dominoPreset = (type, focus, totalItems, defaultItemTime, delayTime) => {
   const focusIndex = focus || 0
   const map = []
