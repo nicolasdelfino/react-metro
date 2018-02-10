@@ -8,6 +8,7 @@
 
 * Optional hooks for binding to mount / unmount sequence complete.
 * Comes with a simple fade animation but everything can be overriden by providing a custom animationsMap
+* 3.3KB minimized / gzipped
 
 #### Codesandbox demo
 
