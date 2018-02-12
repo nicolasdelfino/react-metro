@@ -63,7 +63,7 @@ return Metro.sequence(
       onClick={this.onClick.bind(this)} // optional
       enableClickDuringAnimation //optional, boolean (default false)
       onMount={this.onMountComplete.bind(this)} // optional
-      onUnmount={this.onUnmountComplete.bind(this)}
+      onUnmount={this.onUnmountComplete.bind(this)} // optional
     >
       {" "}
       // optional
