@@ -137,7 +137,7 @@ const animationMap = [
     },
     willEnter: {
       from: { opacity: 0, y: 120, x: 30 },
-      to: { opacity: 1, y: 0, x: 0, ease: "easeInOutElastic" }
+      to: { opacity: 1, y: 0, x: 0, ease: "easeInOutExpo" }
     }
   },
   {
@@ -147,7 +147,7 @@ const animationMap = [
     },
     willEnter: {
       from: { opacity: 0, y: 120, x: -30 },
-      to: { opacity: 1, y: 0, x: 0, ease: "easeInOutElastic" }
+      to: { opacity: 1, y: 0, x: 0, ease: "easeInOutExpo" }
     }
   }
 ];
